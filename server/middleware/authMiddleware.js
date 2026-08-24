@@ -7,7 +7,7 @@ const verifyUser = async (req, res, next) => {
     console.log(req.header.authorization,"ddd")
     const token = req.header.authorization.split(" ")[1];
     if (!token) {
-      return res
+      return res  
         .status(404)
         .json({ success: false, error: "token not provided" });
     }

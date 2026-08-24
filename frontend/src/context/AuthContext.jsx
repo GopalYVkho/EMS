@@ -5,7 +5,7 @@ import axios from "axios";
 const AuthContext = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true)
-
+  
   useEffect(() => {
     const verifyUser = async () => {
       try {
@@ -25,6 +25,7 @@ const AuthContext = ({ children }) => {
           }
         } else {
           setUser(null);
+          setLoading(false);
         }
       } catch (error) {
         if (error.response && !error.response.data.error) {
