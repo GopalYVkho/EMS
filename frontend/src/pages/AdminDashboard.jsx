@@ -1,9 +1,19 @@
-import { useAuth } from "../context/auth";
+import { useState } from "react";
+import Sidebar from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
 
 const AdminDashboard = () => {
-  const { user } = useAuth();
-  console.log(user)
-  return <div>AdminDashboard {user?.name}</div>;
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  return (
+    <div className="flex h-screen bg-gray-50 font-sans overflow-hidden">
+      <Sidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <Outlet context={{setIsSidebarOpen}} />
+    </div>
+  );
 };
 
 export default AdminDashboard;

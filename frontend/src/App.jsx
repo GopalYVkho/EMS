@@ -4,6 +4,9 @@ import Login from "./pages/Login";
 import AdminDashboard from "./pages/AdminDashboard";
 import PrivateRouters from "./utils/PrivateRouters";
 import RolebasedRouters from "./utils/RolebasedRouters";
+import DashBoardSummary from "./components/DashBoardSummary";
+import Departments from "./pages/Departments";
+import DepartmentForm from "./components/Department/DepartmentForm";
 
 function App() {
   return (
@@ -16,12 +19,16 @@ function App() {
           path="/admin-dashboard"
           element={
             <PrivateRouters>
-              <RolebasedRouters requiredRole={["admin"]} >
+              <RolebasedRouters requiredRole={["admin"]}>
                 <AdminDashboard />
               </RolebasedRouters>
             </PrivateRouters>
-          }
-        />
+          }>
+          <Route index element={<DashBoardSummary />}></Route>
+
+          <Route path="/admin-dashboard/departments" element={<Departments />} />
+          <Route path="/admin-dashboard/departments-form" element={<DepartmentForm />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
