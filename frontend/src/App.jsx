@@ -28,6 +28,7 @@ function App() {
 
           <Route path="/admin-dashboard/departments" element={<Departments />} />
           <Route path="/admin-dashboard/departments-form" element={<DepartmentForm />} />
+          <Route path="/admin-dashboard/departments-form/:id" element={<DepartmentForm />} />
         </Route>
       </Routes>
     </BrowserRouter>
@@ -35,4 +36,3 @@ function App() {
 }
 
 export default App;
-``;
