@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import router from "./routes/auth.js";
 import departmentRouter from "./routes/department.js";
+import employeeRouter from "./routes/employee.js";
 import connectToDatabase from "./db/db.js";
 
 
@@ -9,10 +10,12 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(express.static('public/uploads'));
 app.use(cors());
 
 app.use("/api/auth",router)
 app.use("/api/department",departmentRouter)
+app.use("/api/employee",employeeRouter)
 
 await connectToDatabase();
 

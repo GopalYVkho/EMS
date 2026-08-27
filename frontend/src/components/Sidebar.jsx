@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
   return (
@@ -31,32 +31,56 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
           </button>
         </div>
 
-        {/* React Router Links instead of <a> tags */}
         <nav className="flex-1 px-4 py-6 space-y-2 overflow-y-auto">
-          <Link
+          <NavLink
             to="/admin-dashboard"
-            className="flex items-center px-4 py-3 bg-blue-50 text-blue-600 rounded-lg font-medium transition-colors"
+            end
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600" 
+              }`
+            }
           >
             Dashboard
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin-dashboard/employees"
-            className="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-blue-600 rounded-lg font-medium transition-colors"
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600" 
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600" 
+              }`
+            }
           >
             Employees
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin-dashboard/departments"
-            className="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-blue-600 rounded-lg font-medium transition-colors"
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600" 
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600" 
+              }`
+            }
           >
             Departments
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             to="/admin-dashboard/settings"
-            className="flex items-center px-4 py-3 text-gray-600 hover:bg-gray-50 hover:text-blue-600 rounded-lg font-medium transition-colors"
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600"
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600"
+              }`
+            }
           >
             Settings
-          </Link>
+          </NavLink>
         </nav>
 
         <div className="p-4 border-t border-gray-100">

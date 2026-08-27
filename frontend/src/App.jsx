@@ -7,6 +7,9 @@ import RolebasedRouters from "./utils/RolebasedRouters";
 import DashBoardSummary from "./components/DashBoardSummary";
 import Departments from "./pages/Departments";
 import DepartmentForm from "./components/Department/DepartmentForm";
+import EmpList from "./components/Employee/EmpList";
+import EmpAdd from "./components/Employee/EmpAdd";
+import EmpView from "./components/Employee/EmpView";
 
 function App() {
   return (
@@ -14,7 +17,6 @@ function App() {
       <Routes>
         <Route path="/" element={<AdminDashboard />} />
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
         <Route
           path="/admin-dashboard"
           element={
@@ -29,6 +31,13 @@ function App() {
           <Route path="/admin-dashboard/departments" element={<Departments />} />
           <Route path="/admin-dashboard/departments-form" element={<DepartmentForm />} />
           <Route path="/admin-dashboard/departments-form/:id" element={<DepartmentForm />} />
+
+          <Route path="/admin-dashboard/employees" element={<EmpList />} />
+          <Route path="/admin-dashboard/employees-form" element={<EmpAdd />} />
+          <Route path="/admin-dashboard/employees-form/:id" element={<EmpView />} />
+          <Route path="/admin-dashboard/employees-form-edit/:id" element={<EmpAdd />} />
+
+
         </Route>
       </Routes>
     </BrowserRouter>

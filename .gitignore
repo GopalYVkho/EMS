@@ -2,3 +2,9 @@ node_modules/
 .env
 dist/
 build/
+
+# Ignore all files in the uploads folder
+public/uploads/*
+
+# But keep the .gitkeep file to track the empty folder
+!public/uploads/.gitkeep
