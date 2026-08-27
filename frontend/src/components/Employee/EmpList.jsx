@@ -70,18 +70,13 @@ const EmpList = () => {
             </button>
             <button
               onClick={() =>
-                navigate(`/admin-dashboard/departments-form/${row._id}`)
+                navigate(`/admin-dashboard/departments-form/salary/${row._id}`)
               }
               className="text-yellow-600 hover:text-yellow-800 font-medium"
             >
               Salary
             </button>
             <button
-              //   onClick={() => {
-              //     setDepartmentToDelete(row._id);
-              //     setIsModalOpen(true);
-              //   }
-              // }
               className="text-red-500 hover:text-red-700 font-medium"
             >
               Leave
@@ -104,40 +99,6 @@ const EmpList = () => {
 
   return (
     <div className="flex-1 w-full bg-gray-50 relative">
-      {/* {isModalOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center transition-opacity"
-          style={{ backgroundColor: "rgba(0, 0, 0, 0.4)" }}
-        >
-          <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8 max-w-sm w-full mx-4 transform transition-all">
-            <h3 className="text-xl font-bold text-gray-800 mb-2">
-              Delete Department
-            </h3>
-            <p className="text-gray-500 text-sm mb-6">
-              Are you sure you want to delete this department? This action
-              cannot be undone.
-            </p>
-            <div className="flex justify-end gap-3">
-              <button
-                onClick={() => {
-                  setIsModalOpen(false);
-                  setDepartmentToDelete(null);
-                }}
-                className="px-4 py-2 bg-gray-100 text-gray-700 hover:bg-gray-200 rounded-lg font-medium transition-colors"
-              >
-                No, Cancel
-              </button>
-              <button
-                onClick={handleDeleteConfirm}
-                className="px-4 py-2 bg-red-600 text-white hover:bg-red-700 rounded-lg font-medium shadow-md transition-colors"
-              >
-                Yes, Delete
-              </button>
-            </div>
-          </div>
-        </div>
-      )} */}
-
       {/* MAIN CONTENT AREA */}
       <div className="flex flex-col h-screen overflow-hidden">
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 md:p-8">

@@ -70,6 +70,18 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
             Departments
           </NavLink>
           <NavLink
+            to="/admin-dashboard/salary"
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600" 
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600" 
+              }`
+            }
+          >
+            Salary
+          </NavLink>
+          <NavLink
             to="/admin-dashboard/settings"
             className={({ isActive }) =>
               `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${

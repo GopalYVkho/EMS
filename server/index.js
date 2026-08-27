@@ -4,6 +4,7 @@ import router from "./routes/auth.js";
 import departmentRouter from "./routes/department.js";
 import employeeRouter from "./routes/employee.js";
 import connectToDatabase from "./db/db.js";
+import salaryRouter from './routes/salary.js';
 
 
 const app = express();
@@ -16,6 +17,7 @@ app.use(cors());
 app.use("/api/auth",router)
 app.use("/api/department",departmentRouter)
 app.use("/api/employee",employeeRouter)
+app.use("/api/salary",salaryRouter)
 
 await connectToDatabase();
 

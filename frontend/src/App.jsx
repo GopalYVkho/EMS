@@ -10,6 +10,8 @@ import DepartmentForm from "./components/Department/DepartmentForm";
 import EmpList from "./components/Employee/EmpList";
 import EmpAdd from "./components/Employee/EmpAdd";
 import EmpView from "./components/Employee/EmpView";
+import AddSalary from "./pages/AddSalary";
+import SalaryHistory from "./components/Salary/SalaryHistory";
 
 function App() {
   return (
@@ -36,6 +38,13 @@ function App() {
           <Route path="/admin-dashboard/employees-form" element={<EmpAdd />} />
           <Route path="/admin-dashboard/employees-form/:id" element={<EmpView />} />
           <Route path="/admin-dashboard/employees-form-edit/:id" element={<EmpAdd />} />
+
+          
+          <Route path="/admin-dashboard/salary" element={<AddSalary/>} />
+          <Route path="/admin-dashboard/departments-form/salary/:id" element={<SalaryHistory/>} />
+
+          
+
 
 
         </Route>
