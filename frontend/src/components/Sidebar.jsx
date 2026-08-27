@@ -1,6 +1,8 @@
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/auth";
 
 const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const {logout } = useAuth();
   return (
     <>
       {/* Mobile Sidebar Overlay Background */}
@@ -96,7 +98,9 @@ const Sidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
         </nav>
 
         <div className="p-4 border-t border-gray-100">
-          <button className="w-full flex items-center justify-center px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg font-medium transition-colors">
+          <button className="w-full flex items-center justify-center px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg font-medium transition-colors"
+          onClick={logout}
+          >
             Logout
           </button>
         </div>
