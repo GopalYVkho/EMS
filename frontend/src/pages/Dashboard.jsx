@@ -1,8 +1,19 @@
+import { useState } from "react";
+import { Outlet } from "react-router-dom";
+import EmployeSidebar from "../components/EmployeSidebar";
 
 const Dashboard = () => {
-  return (
-    <div>Dashboard</div>
-  )
-}
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-export default Dashboard
+  return (
+    <div className="flex h-screen bg-gray-50 font-sans overflow-hidden">
+      <EmployeSidebar
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
+      <Outlet context={{setIsSidebarOpen}} />
+    </div>
+  );
+};
+
+export default Dashboard;
