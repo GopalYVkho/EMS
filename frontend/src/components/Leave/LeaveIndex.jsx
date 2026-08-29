@@ -1,22 +1,22 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { customStyles } from "../../utils/CommonHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
-import { useAuth } from "../../context/auth";
 
 const LeaveIndex = () => {
-  const {user} = useAuth();
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
-
+  const {id} = useParams();
+  console.log(data,"data")
   useEffect(() => {
     const fetchEmployee = async () => {
-      if (user._id) {
+      if (id) {
         const token = localStorage.getItem("token");
+
         try {
           const response = await axios.get(
-            `http://localhost:3000/api/leave/${user._id}`,
+            `http://localhost:3000/api/leave/${id}`,
             {
               headers: {
                 Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ const LeaveIndex = () => {
     };
 
     fetchEmployee();
-  }, [user._id]);
+  }, [id]);
 
   const columns = useMemo(
     () => [

@@ -72,6 +72,18 @@ const {logout } = useAuth();
             Departments
           </NavLink>
           <NavLink
+            to="/admin-dashboard/Leave"
+            className={({ isActive }) =>
+              `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
+                isActive
+                  ? "bg-blue-50 text-blue-600" 
+                  : "text-gray-600 hover:bg-gray-50 hover:text-blue-600" 
+              }`
+            }
+          >
+            Leave
+          </NavLink>
+          <NavLink
             to="/admin-dashboard/salary"
             className={({ isActive }) =>
               `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${

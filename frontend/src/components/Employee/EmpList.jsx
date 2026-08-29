@@ -52,6 +52,7 @@ const EmpList = () => {
         minWidth: "280px",
         cell: (row) => (
           <div className="flex gap-4">
+            {console.log(row,"gopal")}
             <button
               onClick={() =>
                 navigate(`/admin-dashboard/employees-form/${row._id}`)
@@ -78,6 +79,9 @@ const EmpList = () => {
             </button>
             <button
               className="text-red-500 hover:text-red-700 font-medium"
+              onClick={() =>
+                navigate(`/admin-dashboard/leave/${row._id}`)
+              }
             >
               Leave
             </button>

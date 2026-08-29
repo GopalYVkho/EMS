@@ -17,6 +17,8 @@ import Summary from "./components/EmployeeDashboard.jsx/Summary";
 import LeaveIndex from "./components/Leave/LeaveIndex";
 import LeaveAdd from "./components/Leave/LeaveAdd";
 import Settings from "./pages/Settings";
+import AdminLeaveIndex from "./components/Leave/AdminLeaveIndex";
+import LeaveDetails from "./components/Leave/LeaveDetails";
 
 function App() {
   return (
@@ -35,7 +37,6 @@ function App() {
           }
         >
           <Route index element={<DashBoardSummary />}></Route>
-
           <Route
             path="/admin-dashboard/departments"
             element={<Departments />}
@@ -48,7 +49,6 @@ function App() {
             path="/admin-dashboard/departments-form/:id"
             element={<DepartmentForm />}
           />
-
           <Route path="/admin-dashboard/employees" element={<EmpList />} />
           <Route path="/admin-dashboard/employees-form" element={<EmpAdd />} />
           <Route
@@ -59,21 +59,25 @@ function App() {
             path="/admin-dashboard/employees-form-edit/:id"
             element={<EmpAdd />}
           />
-
           <Route path="/admin-dashboard/salary" element={<AddSalary />} />
           <Route
             path="/admin-dashboard/departments-form/salary/:id"
             element={<SalaryHistory />}
           />
+          <Route path="/admin-dashboard/leave" element={<AdminLeaveIndex />} />
+          <Route path="/admin-dashboard/leave/details/:id" element={<LeaveDetails />} />
+
+          <Route path="/admin-dashboard/leave/:id" element={<LeaveIndex />} />
+
+          <Route path="/admin-dashboard/settings" element={<Settings />} />
         </Route>
 
-
-
+        {/* Employee */}
         <Route
           path="/employee-dashboard"
           element={
             <PrivateRouters>
-              <RolebasedRouters requiredRole={["admin","employee"]}>
+              <RolebasedRouters requiredRole={["admin", "employee"]}>
                 <Dashboard />
               </RolebasedRouters>
             </PrivateRouters>
@@ -86,10 +90,7 @@ function App() {
           />
 
           {/* leave */}
-          <Route
-            path="/employee-dashboard/leave"
-            element={<LeaveIndex />}
-          />
+          <Route path="/employee-dashboard/leave/:id" element={<LeaveIndex />} />
 
           <Route path="/employee-dashboard/leave/add" element={<LeaveAdd />} />
 
@@ -98,14 +99,7 @@ function App() {
             element={<SalaryHistory />}
           />
 
-          <Route
-            path="/employee-dashboard/settings"
-            element={<Settings />}
-          />
-          
-          
-
-          
+          <Route path="/employee-dashboard/settings" element={<Settings />} />
         </Route>
       </Routes>
     </BrowserRouter>
