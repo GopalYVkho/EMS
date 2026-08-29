@@ -7,7 +7,6 @@ import { customStyles } from "../../utils/CommonHelper";
 const SalaryHistory = () => {
   const {id} = useParams();
   const [salaries, setSalaries] = useState([]);
-//   const [searchText, setSearchText] = useState("");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -76,14 +75,6 @@ const SalaryHistory = () => {
     []
   );
 
-//   // Search feature - Employee name vachu filter panna
-//   const filteredData = useMemo(() => {
-//     if (!salaries) return [];
-//     return salaries.filter((item) => {
-//       const empName = item.employee?.userId?.name || "";
-//       return empName.toLowerCase().includes(searchText.toLowerCase());
-//     });
-//   }, [salaries, searchText]);
 
   return (
     <div className="flex-1 w-full bg-gray-50 relative">
@@ -106,16 +97,7 @@ const SalaryHistory = () => {
             {/* Data Table Section */}
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 pt-4">
               
-              {/* Search Bar UI */}
               <div className="px-4 sm:px-6 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                {/* <h2 className="text-lg font-bold text-gray-800">Salary Records</h2> */}
-                {/* <input
-                  type="text"
-                  placeholder="Search by employee name..."
-                  className="w-full sm:w-64 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"
-                  value={searchText}
-                  onChange={(e) => setSearchText(e.target.value)}
-                /> */}
               </div>
 
               <DataTable
