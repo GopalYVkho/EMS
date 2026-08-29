@@ -10,11 +10,23 @@ const addLeave = async (req, res) => {
     })
     await leaveAdd.save();
 
-    return res.status(200).json({suceess:true})
+    return res.status(200).json({success:true})
 
   } catch {
-    return res.status(500).json({suceess:true,erro:"Server error"})
+    return res.status(500).json({success:true,erro:"Server error"})
   }
 };
 
-export { addLeave };
+const LeaveIndex = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const employee = await Employee.findOne({userId:id});
+    const leaveList = await Leave.find({employeeId:employee._id});
+    return res.status(200).json({success:true,leaveList})
+
+  } catch {
+    return res.status(500).json({success:true,erro:"Server error"})
+  }
+};
+
+export { addLeave,LeaveIndex };

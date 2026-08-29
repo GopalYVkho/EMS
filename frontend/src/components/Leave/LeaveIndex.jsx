@@ -1,99 +1,81 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { employeeCall } from "../../utils/EmployeeHelper";
+import { Link } from "react-router-dom";
 import { customStyles } from "../../utils/CommonHelper";
 import DataTable from "react-data-table-component";
+import axios from "axios";
+import { useAuth } from "../../context/auth";
 
 const LeaveIndex = () => {
-  const navigate = useNavigate();
+  const {user} = useAuth();
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchEmployee = async () => {
-      try {
-        const response = await employeeCall();
-        setData(response);
-      } catch (error) {
-        console.log("Error:", error);
+      if (user._id) {
+        const token = localStorage.getItem("token");
+        try {
+          const response = await axios.get(
+            `http://localhost:3000/api/leave/${user._id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          
+          if (response.data.success) {
+            setData(response.data.leaveList); 
+          }
+        } catch (error) {
+          console.log(error.response);
+        } 
       }
     };
 
     fetchEmployee();
-  }, []);
+  }, [user._id]);
 
   const columns = useMemo(
     () => [
       {
-        name: "NAME",
-        selector: (row) => row.userId.name,
+        name: "NAME", 
+        selector: (row) => row.leaveType,
+        sortable: true,
+      },
+      
+      {
+        name: "FROM",
+        selector: (row) => new Date(row.fromDate).toLocaleDateString(),
         sortable: true,
       },
       {
-        name: "Image",
-        selector: (row) => {
-          return <img width="40" height="40" className="rounded-full" src={`http://localhost:3000/${row.userId.profileImage}`} />;
-        },
-
+        name: "TO",
+        selector: (row) => new Date(row.toDate).toLocaleDateString(),
         sortable: true,
       },
       {
-        name: "Department",
-        selector: (row) => row.department.departmentName,
+        name: "Description",
+        selector: (row) => row.description,
         sortable: true,
       },
       {
-        name: "DOB",
-        selector: (row) => new Date(row.dob).toLocaleDateString(),
+        name: "Status",
+        selector: (row) => row.status,
         sortable: true,
-      },
-      {
-        name: "ACTIONS",
-        minWidth: "280px",
-        cell: (row) => (
-          <div className="flex gap-4">
-            <button
-              onClick={() =>
-                navigate(`/admin-dashboard/employees-form/${row._id}`)
-              }
-              className="text-green-600 hover:text-green-800 font-medium"
-            >
-              View
-            </button>
-            <button
-              onClick={() =>
-                navigate(`/admin-dashboard/employees-form-edit/${row._id}`)
-              }
-              className="text-blue-600 hover:text-blue-800 font-medium"
-            >
-              Edit
-            </button>
-            <button
-              onClick={() =>
-                navigate(`/admin-dashboard/departments-form/salary/${row._id}`)
-              }
-              className="text-yellow-600 hover:text-yellow-800 font-medium"
-            >
-              Salary
-            </button>
-            <button
-              className="text-red-500 hover:text-red-700 font-medium"
-            >
-              Leave
-            </button>
-          </div>
-        ),
-        button: true,
       },
     ],
-    [navigate]
+    []
   );
-  console.log(data);
 
   const filteredData = useMemo(() => {
     if (!data) return [];
-    return data.filter((item) =>
-      item.userId.name.toLowerCase().includes(searchText.toLowerCase())
+    return data.filter((item) =>{
+      console.log(item,"dd")
+    return(
+      item.leaveType.toLowerCase().includes(searchText.toLowerCase())
+    )
+  }
     );
   }, [data, searchText]);
 
@@ -127,7 +109,7 @@ const LeaveIndex = () => {
                 </h2>
                 <input
                   type="text"
-                  placeholder="Search Employee..."
+                  placeholder="Search Leave..."
                   className="w-full sm:w-64 px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors text-sm"
                   value={searchText}
                   onChange={(e) => setSearchText(e.target.value)}

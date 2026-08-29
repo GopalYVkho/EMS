@@ -6,6 +6,9 @@ import employeeRouter from "./routes/employee.js";
 import connectToDatabase from "./db/db.js";
 import salaryRouter from './routes/salary.js';
 import leaveRouter from './routes/Leave.js';
+import settingRouter from './routes/setting.js'
+
+
 
 
 const app = express();
@@ -20,6 +23,7 @@ app.use("/api/department",departmentRouter)
 app.use("/api/employee",employeeRouter)
 app.use("/api/salary",salaryRouter)
 app.use("/api/leave",leaveRouter)
+app.use("/api/setting",settingRouter)
 
 await connectToDatabase();
 

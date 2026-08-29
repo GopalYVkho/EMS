@@ -16,6 +16,7 @@ import Dashboard from "./pages/Dashboard";
 import Summary from "./components/EmployeeDashboard.jsx/Summary";
 import LeaveIndex from "./components/Leave/LeaveIndex";
 import LeaveAdd from "./components/Leave/LeaveAdd";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
@@ -92,6 +93,17 @@ function App() {
 
           <Route path="/employee-dashboard/leave/add" element={<LeaveAdd />} />
 
+          <Route
+            path="/employee-dashboard/salary/:id"
+            element={<SalaryHistory />}
+          />
+
+          <Route
+            path="/employee-dashboard/settings"
+            element={<Settings />}
+          />
+          
+          
 
           
         </Route>

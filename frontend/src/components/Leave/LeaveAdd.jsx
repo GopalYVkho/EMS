@@ -8,8 +8,6 @@ const LeaveAdd = () => {
   const { id } = useParams();
   const {user} = useAuth();
   const navigate = useNavigate();
-    console.log(id)
-  // Leave-ku thevayana puthu states
   const [formData, setFormData] = useState({
     userId:user._id,
     leaveType: "",
@@ -71,7 +69,7 @@ const LeaveAdd = () => {
       
 
       if (response.data.success) {
-        navigate("/admin-dashboard/leaves");
+        navigate(`/employee-dashboard/leave`);
       }
     } catch (error) {
       console.log(error);

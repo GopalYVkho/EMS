@@ -61,7 +61,7 @@ console.log(user)
             Employees
           </NavLink>
           <NavLink
-            to="/employee-dashboard/leave"
+            to={`/employee-dashboard/leave`}
             className={({ isActive }) =>
               `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive
@@ -73,7 +73,7 @@ console.log(user)
             Leave
           </NavLink>
           <NavLink
-            to="/employee-dashboard/salary"
+            to={`/employee-dashboard/salary/${user._id}`}
             className={({ isActive }) =>
               `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive
