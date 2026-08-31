@@ -69,7 +69,7 @@ const LeaveAdd = () => {
       
 
       if (response.data.success) {
-        navigate(`/employee-dashboard/leave`);
+        navigate(`/employee-dashboard/leave/${user._id}`);
       }
     } catch (error) {
       console.log(error);

@@ -72,7 +72,7 @@ const {logout } = useAuth();
             Departments
           </NavLink>
           <NavLink
-            to="/admin-dashboard/Leave"
+            to="/admin-dashboard/leave"
             className={({ isActive }) =>
               `flex items-center px-4 py-3 rounded-lg font-medium transition-colors ${
                 isActive

@@ -3,7 +3,6 @@ import { useAuth } from "../context/auth";
 
 const EmployeSidebar = ({ isSidebarOpen, setIsSidebarOpen }) => {
 const {logout,user } = useAuth();
-console.log(user)
   return (
     <>
       {/* Mobile Sidebar Overlay Background */}

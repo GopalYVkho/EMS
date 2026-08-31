@@ -3,12 +3,13 @@ import { Link, useParams } from "react-router-dom";
 import { customStyles } from "../../utils/CommonHelper";
 import DataTable from "react-data-table-component";
 import axios from "axios";
+import { useAuth } from "../../context/auth";
 
 const LeaveIndex = () => {
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
-  const {id} = useParams();
-  console.log(data,"data")
+  const { id } = useParams();
+  const {user} = useAuth();
   useEffect(() => {
     const fetchEmployee = async () => {
       if (id) {
@@ -70,12 +71,8 @@ const LeaveIndex = () => {
 
   const filteredData = useMemo(() => {
     if (!data) return [];
-    return data.filter((item) =>{
-      console.log(item,"dd")
-    return(
+    return data.filter((item) =>
       item.leaveType.toLowerCase().includes(searchText.toLowerCase())
-    )
-  }
     );
   }, [data, searchText]);
 
@@ -94,12 +91,14 @@ const LeaveIndex = () => {
                   Manage your leave here.
                 </p>
               </div>
-              <Link
-                to="/employee-dashboard/leave/add"
-                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors duration-200 shadow-md text-center"
-              >
-                + Add Leave
-              </Link>
+              {user.role === "employee" && (
+                <Link
+                  to="/employee-dashboard/leave/add"
+                  className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors duration-200 shadow-md text-center"
+                >
+                  + Add Leave
+                </Link>
+              )}
             </div>
 
             <div className="bg-white rounded-xl shadow-sm overflow-hidden border border-gray-100 pt-4">

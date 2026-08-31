@@ -1,5 +1,6 @@
 import Employee from "../models/Employee.js";
 import Leave from "../models/Leave.js";
+import mongoose from "mongoose";
 
 const addLeave = async (req, res) => {
   try {
@@ -16,22 +17,30 @@ const addLeave = async (req, res) => {
 
     return res.status(200).json({ success: true });
   } catch {
-    return res.status(500).json({ success: true, erro: "Server error" });
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 };
 
 const LeaveIndex = async (req, res) => {
   try {
     const { id } = req.params;
-    let leaveList = await Leave.find({employeeId:id});
-    if(!leaveList){
-      const employee = await Employee.findOne({ userId: id });
-      leaveList = await Leave.find({ employeeId: employee._id });
+    if (!mongoose.isValidObjectId(id)) {
+      return res.status(400).json({ success: false, error: "Invalid employee id" });
     }
+
+    const employee = await Employee.findOne({
+      $or: [{ _id: id }, { userId: id }],
+    });
+
+    if (!employee) {
+      return res.status(404).json({ success: false, error: "Employee not found" });
+    }
+
+    const leaveList = await Leave.find({ employeeId: employee._id });
     
     return res.status(200).json({ success: true, leaveList });
   } catch {
-    return res.status(500).json({ success: true, erro: "Server error" });
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 };
 
@@ -54,7 +63,7 @@ const LeaveIndexAdmin = async (req, res) => {
     return res.status(200).json({ success: true, leave });
   } catch(error) {
     console.log(error)
-    return res.status(500).json({ success: true, erro: "Server error" });
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 };
 
@@ -76,10 +85,14 @@ const LeaveDetails = async (req, res) => {
       ],
     });
 
+    if (!leave) {
+      return res.status(404).json({ success: false, error: "Leave not found" });
+    }
+
     return res.status(200).json({ success: true, leave });
   } catch(error) {
     console.log(error)
-    return res.status(500).json({ success: true, error: "Server error" });
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 };
 
@@ -94,7 +107,7 @@ const LeaveApprove = async (req, res) => {
     return res.status(200).json({ success: true });
   } catch(error) {
     console.log(error)
-    return res.status(500).json({ success: true, error: "Server error" });
+    return res.status(500).json({ success: false, error: "Server error" });
   }
 };
 

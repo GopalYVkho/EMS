@@ -11,7 +11,6 @@ const AdminLeaveIndex = () => {
   const [searchText, setSearchText] = useState("");
   const [data, setData] = useState([]);
   const [statusFilter, setStatusFilter] = useState("All");
-  console.log(data, "data");
   useEffect(() => {
     const fetchEmployee = async () => {
       if (user._id) {

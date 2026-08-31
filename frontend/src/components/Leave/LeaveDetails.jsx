@@ -8,7 +8,6 @@ const LeaveDetails = () => {
 
   const [leave, setLeave] = useState(null);
   const [loading, setLoading] = useState(true);
-  console.log(leave);
   useEffect(() => {
     const fetchEmployee = async () => {
       if (id) {
@@ -73,7 +72,7 @@ const LeaveDetails = () => {
       );
 
       if (response.data.success) {
-        navigate('/admin-dashboard/Leave')
+        navigate('/admin-dashboard/leave')
       }
     } catch (error) {
       console.log("Error updating status:", error);

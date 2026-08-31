@@ -67,9 +67,6 @@ const DashBoardSummary = () => {
                   Employee Management System Overview
                 </p>
               </div>
-              <button className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-6 rounded-lg transition-colors duration-200 shadow-md">
-                + Add Employee
-              </button>
             </div>
 
             {/* StatCards rendered using the reusable component */}

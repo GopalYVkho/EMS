@@ -4,10 +4,10 @@ import { addLeave,LeaveIndex,LeaveIndexAdmin,LeaveDetails,LeaveApprove } from ".
 
 const router = express.Router();
 router.post('/add',verifyUser,addLeave)
-router.get("/:id",verifyUser,LeaveIndex)
-router.put("/:id",verifyUser,LeaveApprove)
 router.get("/",verifyUser,LeaveIndexAdmin)
 router.get("/detail/:id",verifyUser,LeaveDetails)
+router.get("/:id",verifyUser,LeaveIndex)
+router.put("/:id",verifyUser,LeaveApprove)
 
 
 
